@@ -22,7 +22,7 @@ public class Lieder {
 
     public  void liederImportieren(){
         try {
-            File file = new File("Alan Walker - Alone.mp3");
+            File file = new File("core/src/MusicPlayerPackage/Liedertest/Alan Walker - Alone.mp3");
             System.out.println(file);
             if(file.exists())
             {

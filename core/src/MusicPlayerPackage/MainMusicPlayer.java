@@ -47,7 +47,7 @@ public class MainMusicPlayer extends ApplicationAdapter {
 	}
 	public void start()
 	{
-		Music mp3file = Gdx.audio.newMusic(Gdx.files.external("core/Alan Walker - Alone.mp3"));
+		Music mp3file = Gdx.audio.newMusic(Gdx.files.external("core/src/MusicPlayerPackage/Liedertest/Alan Walker - Alone.mp3"));
 		mp3file.play();
 		this.liederSuchen = new LiederSuchen();
 		this.lieder = new Lieder();
