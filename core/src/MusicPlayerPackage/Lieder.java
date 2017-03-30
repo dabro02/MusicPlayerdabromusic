@@ -22,14 +22,14 @@ public class Lieder {
 
     public  void liederImportieren(){
         try {
-            File file = new File("core/src/MusicPlayerPackage/Liedertest/Alan Walker - Alone.mp3");
+            File file = new File("data/Alan Walker - Alone.mp3");
             System.out.println(file);
             if(file.exists())
             {
                 System.out.println("hallo");
             }
             System.out.println("importieren");
-            mp3file = Gdx.audio.newMusic(Gdx.files.internal("Alan Walker - Alone.mp3"));
+            mp3file = Gdx.audio.newMusic(Gdx.files.internal("core/assets/data/Alan Walker - Alone.mp3"));
         }
         catch(Exception e) {}
     }
