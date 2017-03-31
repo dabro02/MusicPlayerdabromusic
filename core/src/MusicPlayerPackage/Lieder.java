@@ -1,10 +1,12 @@
 package MusicPlayerPackage;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
+
+import static MusicPlayerPackage.ButtonPictures.game;
 
 
 /**
@@ -29,16 +31,28 @@ public class Lieder {
                 System.out.println("hallo");
             }
             System.out.println("importieren");
-            mp3file = Gdx.audio.newMusic(Gdx.files.internal("core/assets/data/Alan Walker - Alone.mp3"));
+            //mp3file = Gdx.audio.newMusic(Gdx.files.internal("core/assets/data/Alan Walker - Alone.mp3"));
         }
         catch(Exception e) {}
     }
 
-    public void liederAnzeigen(Graphics2D g)
+    public void liederAnzeigen(Graphics2D g, ArrayList<File> mp3files)
     {
-        /*g.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
-        g.fillRect(game.actualwidth/2, 0,game.actualwidth,game.actualheight/20);
-        g.drawString(lied.toString(), game.actualheight/2, 0);*/
+
+        int y = 0;
+        String zahl;
+        for(int i= 0; i<mp3files.size();i++){
+            g.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
+            g.fillRect(game.actualwidth/2, y,game.actualwidth,35);
+            zahl = String.valueOf((i));
+
+            g.setColor(Color.BLACK);
+            g.drawString(zahl+".", game.actualwidth/2+10, y+23 );
+            y = y+35;
+            g.drawRect(game.actualwidth/2, y-1,game.actualwidth,1);
+
+        }
+
     }
 
     public void liederStarten()

@@ -30,13 +30,13 @@ public class MainFrame extends JPanel{
                         if (game.playOrPause) {
                             game.playOrPause = false;
                             System.out.println("klick");
-                            game.lieder.liederImportieren();
-                            game.lieder.liederStarten();
+                            //game.lieder.liederImportieren();
+                            //game.lieder.liederStarten();
 
                         }
                         else {
                             game.playOrPause = true;
-                            game.lieder.liederStoppen();
+                            //game.lieder.liederStoppen();
                         }
                     }
                 }
@@ -63,7 +63,7 @@ public class MainFrame extends JPanel{
         Hintergrundbild.getHintergrund(game);
 
         try{
-            hintergrundbild1 = ImageIO.read(new File("core/src/MusicPlayerPackage/Pictures/Hintergrund.png"));
+            hintergrundbild1 = ImageIO.read(new File("data/Pictures/Hintergrund.png"));
         }
         catch(Exception e){}
         playButton = new Buttons(game.actualwidth/4-25,game.actualheight/12-25,50,50, null);
@@ -80,7 +80,7 @@ public class MainFrame extends JPanel{
         playButton.renderButtons(g);
         playButton.koordsUpdate(game.actualwidth/4-25,game.actualheight/12-25,50,50);
         ButtonPictures.getParameters(game,g,game.actualwidth,game.actualheight);
-        game.lieder.liederAnzeigen(g);
+        game.lieder.liederAnzeigen(g, game.liederSuchen.mp3files);
         if(game.playOrPause){
             ButtonPictures.createPlay();
         }

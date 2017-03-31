@@ -1,20 +1,23 @@
 package MusicPlayerPackage;
 
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import static MusicPlayerPackage.ButtonPictures.game;
 
 
 /**
  * Created by Daniel on 21.03.2017.
  */
 public class LiederSuchen {
-
+    final ArrayList<File> mp3files = new ArrayList<File>();
     Thread thread3;
     LiederSuchen() {
-         final ArrayList<File> mp3files = new ArrayList<File>();
+
         thread3 = new Thread(new Runnable() {
             @Override
             public void run() {

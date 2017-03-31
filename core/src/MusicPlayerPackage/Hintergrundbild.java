@@ -16,13 +16,13 @@ public class Hintergrundbild {
         int w = game.actualwidth;
         int h = game.actualheight;
         File imgtest = new File("");
-        File dirtest = new File("core/src/MusicPlayerPackage/Pictures");
+        File dirtest = new File("data/Pictures");
         if(dirtest.exists()){
-        imgtest = new File("core/src/MusicPlayerPackage/Pictures/Hintergrund.png");
+        imgtest = new File("data/Pictures/Hintergrund.png");
         }
         else{
             dirtest.mkdir();
-            imgtest = new File("core/src/MusicPlayerPackage/Pictures/Hintergrund.png");
+            imgtest = new File("data/Pictures/Hintergrund.png");
         }
         if(!imgtest.exists())
         {
@@ -42,7 +42,7 @@ public class Hintergrundbild {
             }
         }
         try {
-            ImageIO.write(img, "png", new File("core/src/MusicPlayerPackage/Pictures/Hintergrund.png"));
+            ImageIO.write(img, "png", new File("data/Pictures/Hintergrund.png"));
         } catch (IOException k) {
             k.printStackTrace();
         }
