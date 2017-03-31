@@ -2,6 +2,7 @@ package MusicPlayerPackage;
 
 import com.badlogic.gdx.audio.Music;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class Lieder {
 
         int y = 0;
         String zahl;
+
         for(int i= 0; i<mp3files.size();i++){
             g.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
             g.fillRect(game.actualwidth/2, y,game.actualwidth,35);
