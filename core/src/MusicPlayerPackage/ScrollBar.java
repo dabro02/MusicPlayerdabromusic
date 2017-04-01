@@ -9,13 +9,13 @@ public class ScrollBar {
     MainMusicPlayer game;
     int totalLengthinPx = 0;
     int actualscrollerposition = 35;
-    int bottomscrollerposition;
+    int bottomscrollerposition = 95;
     int scrollerDistance;
+    int scrollbarSizeinPx;
     boolean holding = false;
     boolean scrollable = false;
     ScrollBar(MainMusicPlayer game){
         this.game = game;
-        bottomscrollerposition = actualscrollerposition+totalLengthinPx/(game.actualheight-35);
     }
     public void renderScrollbar(Graphics2D g) {
         updateScrollbar();
@@ -24,7 +24,7 @@ public class ScrollBar {
         g.setColor(Color.BLACK);
         g.drawRect(game.actualwidth-25, 35,23,totalLengthinPx);
         g.setColor(new Color(0.1f,0.1f,0.1f,0.7f));
-        g.fillRect(game.actualwidth-24, actualscrollerposition, 24, totalLengthinPx/(game.actualheight-35));
+        g.fillRect(game.actualwidth-24, actualscrollerposition, 24, 60);
     }
 
     public void updateScrollbar(){
@@ -35,44 +35,43 @@ public class ScrollBar {
         if (holding){
             if(actualscrollerposition< 35){
                 actualscrollerposition = 35;
-                bottomscrollerposition = (actualscrollerposition+totalLengthinPx/(game.actualheight-35));
+                bottomscrollerposition = 95;
                 holding = false;
                 return;
             }
             if(bottomscrollerposition > game.actualheight-37){
-                actualscrollerposition = game.actualheight-37-(totalLengthinPx/(game.actualheight-35));
-                bottomscrollerposition = (actualscrollerposition+totalLengthinPx/(game.actualheight-35));
+                actualscrollerposition = game.actualheight-37-60;
+                bottomscrollerposition = actualscrollerposition+60;
                 holding = false;
                 return;
             }
             actualscrollerposition = mouseY-35-scrollerDistance;
-            bottomscrollerposition = (actualscrollerposition+totalLengthinPx/(game.actualheight-35));}
+            bottomscrollerposition = actualscrollerposition+60;}
 
     }
 
     public void scrollWithMouseWheel(int a){
-        System.out.println(a);
         if(scrollable){
             if(a<0){
                 if(actualscrollerposition > 35){
-                actualscrollerposition = actualscrollerposition-2;
-                bottomscrollerposition = bottomscrollerposition-2;
+                actualscrollerposition = actualscrollerposition-3;
+                bottomscrollerposition = bottomscrollerposition-3;
                 }
                 else{
                     actualscrollerposition = 35;
-                    bottomscrollerposition = (actualscrollerposition+totalLengthinPx/(game.actualheight-35));
+                    bottomscrollerposition = actualscrollerposition+90;
                     scrollable = false;
                 }
 
             }
             else if(a>0){
                 if(bottomscrollerposition < game.actualheight-37){
-                    actualscrollerposition = actualscrollerposition+2;
-                    bottomscrollerposition = bottomscrollerposition+2;
+                    actualscrollerposition = actualscrollerposition+3;
+                    bottomscrollerposition = bottomscrollerposition+3;
                 }
                 else {
-                    actualscrollerposition = game.actualheight-37-(totalLengthinPx/(game.actualheight-35));
-                    bottomscrollerposition = (actualscrollerposition+totalLengthinPx/(game.actualheight-35));
+                    actualscrollerposition = game.actualheight-37-60;
+                    bottomscrollerposition = actualscrollerposition+60;
                     scrollable = false;
                 }
             }
@@ -80,12 +79,17 @@ public class ScrollBar {
         }
 
     }
+    public void liederAnzeigen(){
+        scrollbarSizeinPx= game.actualheight-95;
+
+    }
+
     public void getScrollerDistance(int mouseY){
         scrollerDistance = mouseY-actualscrollerposition-35;
     }
 
     public boolean scollBarPointed(int mouseX,int mouseY){
-        if(mouseX> game.actualwidth-20 && mouseX<game.actualwidth && mouseY> actualscrollerposition+30 && mouseY<actualscrollerposition+totalLengthinPx/(game.actualheight-35)+30){
+        if(mouseX> game.actualwidth-20 && mouseX<game.actualwidth && mouseY> actualscrollerposition+30 && mouseY<actualscrollerposition+60+30){
             return true;
         }
         else{
