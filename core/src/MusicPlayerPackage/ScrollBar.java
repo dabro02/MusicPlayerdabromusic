@@ -12,6 +12,7 @@ public class ScrollBar {
     int bottomscrollerposition = 95;
     int scrollerDistance;
     int scrollbarSizeinPx;
+    int mp3filespos = 0;
     boolean holding = false;
     boolean scrollable = false;
     ScrollBar(MainMusicPlayer game){
@@ -24,7 +25,7 @@ public class ScrollBar {
         g.setColor(Color.BLACK);
         g.drawRect(game.actualwidth-25, 35,23,totalLengthinPx);
         g.setColor(new Color(0.1f,0.1f,0.1f,0.7f));
-        g.fillRect(game.actualwidth-24, actualscrollerposition, 24, 60);
+        g.fillRect(game.actualwidth-24, (totalLengthinPx-60)/game.liederSuchen.mp3files.size()*mp3filespos+35, 24, 60);
     }
 
     public void updateScrollbar(){
@@ -33,7 +34,7 @@ public class ScrollBar {
     public void scrolling(int mouseY){
         int oldMouseY = mouseY;
         if (holding){
-            if(actualscrollerposition< 35){
+            /*if(actualscrollerposition< 35){
                 actualscrollerposition = 35;
                 bottomscrollerposition = 95;
                 holding = false;
@@ -46,34 +47,19 @@ public class ScrollBar {
                 return;
             }
             actualscrollerposition = mouseY-35-scrollerDistance;
-            bottomscrollerposition = actualscrollerposition+60;}
+            bottomscrollerposition = actualscrollerposition+60;*/
+        }
+
 
     }
 
     public void scrollWithMouseWheel(int a){
         if(scrollable){
             if(a<0){
-                if(actualscrollerposition > 35){
-                actualscrollerposition = actualscrollerposition-3;
-                bottomscrollerposition = bottomscrollerposition-3;
-                }
-                else{
-                    actualscrollerposition = 35;
-                    bottomscrollerposition = actualscrollerposition+90;
-                    scrollable = false;
-                }
-
+                mp3filespos = mp3filespos+1;
             }
             else if(a>0){
-                if(bottomscrollerposition < game.actualheight-37){
-                    actualscrollerposition = actualscrollerposition+3;
-                    bottomscrollerposition = bottomscrollerposition+3;
-                }
-                else {
-                    actualscrollerposition = game.actualheight-37-60;
-                    bottomscrollerposition = actualscrollerposition+60;
-                    scrollable = false;
-                }
+                mp3filespos = mp3filespos-1;
             }
 
         }
