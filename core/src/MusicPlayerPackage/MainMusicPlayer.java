@@ -33,6 +33,7 @@ public class MainMusicPlayer extends ApplicationAdapter {
 	JFrame frame;
 	Lieder lieder;
 	LiederSuchen liederSuchen;
+	ScrollBar scrollBar;
 	static boolean playOrPause = true;
 
 	int actualwidth = 1366;
@@ -49,6 +50,7 @@ public class MainMusicPlayer extends ApplicationAdapter {
 	{
 		/*Music mp3file = Gdx.audio.newMusic(Gdx.files.internal("data/Alan Walker - Alone.mp3"));
 		mp3file.play();*/
+		scrollBar = new ScrollBar(this);
 		this.liederSuchen = new LiederSuchen();
 		this.lieder = new Lieder();
 		lieder.liederImportieren();

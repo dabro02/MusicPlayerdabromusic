@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -42,22 +44,37 @@ public class MainFrame extends JPanel{
                 }
             @Override
             public void mousePressed(MouseEvent e) {
-
+                if(game.scrollBar.scollBarPointed(e.getX(), e.getY())){
+                    game.scrollBar.getScrollerDistance(e.getY());
+                    game.scrollBar.holding = true;
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                if(true){
+                    game.scrollBar.holding = false;
+                }
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+                if(game.scrollBar.holding = true){
+                    game.scrollBar.holding = false;
+                }
+            }
+        });
+        game.frame.addMouseWheelListener(new MouseWheelListener() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
 
+                    if (game.scrollBar.fieldPointed(e.getX(), e.getY()))
+                        game.scrollBar.scrollable = true;
+                        game.scrollBar.scrollWithMouseWheel(e.getUnitsToScroll());
             }
         });
         Hintergrundbild.getHintergrund(game);
@@ -77,6 +94,7 @@ public class MainFrame extends JPanel{
         g.drawImage(hintergrundbild1, 0,0 , null);
         g.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
         g.fillRect(0,0,game.actualwidth/2,game.actualheight/6);
+
         playButton.renderButtons(g);
         playButton.koordsUpdate(game.actualwidth/4-25,game.actualheight/12-25,50,50);
         ButtonPictures.getParameters(game,g,game.actualwidth,game.actualheight);
@@ -87,6 +105,18 @@ public class MainFrame extends JPanel{
         else {
             ButtonPictures.createPause();
         }
+        //generelles Fenster:
+        g.setColor(new Color(0.5f, 0.5f, 0.5f, 0.5f));
+        g.fillRect(game.actualwidth/2, 0, game.actualwidth/2, 35);
+
+        g.setColor(Color.BLACK);
+        g.drawRect(game.actualwidth/2, 35, game.actualwidth, 1);
+        g.drawLine(game.actualwidth/2, 0, game.actualwidth/2,game.actualheight);
+        g.drawLine(game.actualwidth-25, 35, game.actualwidth-25,game.actualheight);
+        g.setFont(new Font("Arial",Font.BOLD, 20));
+        g.drawString("Lieder", game.actualwidth/2+10, 25);
+        //Scrollbar
+        game.scrollBar.renderScrollbar(g);
     }
 
 
@@ -101,6 +131,7 @@ public class MainFrame extends JPanel{
             }
             catch(Exception e){}
             playButton.buttonPointed(x,y);
+            game.scrollBar.scrolling(y);
             game.actualwidth = game.frame.getWidth();
             game.actualheight = game.frame.getHeight();
             game.actualX = game.frame.getX();

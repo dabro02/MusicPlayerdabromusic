@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  */
 public class Buttons {
 
-    int x,y,w,h;
+    int x,y,w,h, nummer;
     BufferedImage Icon;
     boolean pointed = false;
 
@@ -19,6 +19,14 @@ public class Buttons {
         this.w = w;
         this.h = h;
         this.Icon = Icon;
+    }
+    public Buttons(int x, int y, int w, int h, int nummer)
+    {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.nummer = nummer;
     }
 
     void renderButtons(Graphics2D g){
@@ -38,6 +46,12 @@ public class Buttons {
             //System.out.println("ja");
         }
 
+    }
+    void renderButtonsLieder(Graphics2D g) {
+        g.setColor(new Color(0.5f,0.5f, 0.5f,0.5f));
+        if(pointed) {
+            g.fillRect(x, y, w, h);
+        }
     }
 
     public boolean buttonPointed(int mouseX, int mouseY){

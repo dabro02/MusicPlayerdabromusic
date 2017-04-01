@@ -16,7 +16,8 @@ import static MusicPlayerPackage.ButtonPictures.game;
 
 public class Lieder {
     Music mp3file;
-
+    int totalSizeInPx= 0;
+    int y = 35;
     Lieder()
     {
         liederImportieren();
@@ -40,21 +41,21 @@ public class Lieder {
     public void liederAnzeigen(Graphics2D g, ArrayList<File> mp3files)
     {
 
-        int y = 0;
+        y = 35;
         String zahl;
 
         for(int i= 0; i<mp3files.size();i++){
             g.setColor(new Color(0.5f,0.5f,0.5f,0.5f));
-            g.fillRect(game.actualwidth/2, y,game.actualwidth,35);
-            zahl = String.valueOf((i));
+            g.fillRect(game.actualwidth/2, y,game.actualwidth/2-25,35);
+            zahl = String.valueOf((i+1));
 
             g.setColor(Color.BLACK);
             g.drawString(zahl+".", game.actualwidth/2+10, y+23 );
             y = y+35;
-            g.drawRect(game.actualwidth/2, y-1,game.actualwidth,1);
+            g.drawRect(game.actualwidth/2, y-1,game.actualwidth/2-25,1);
 
         }
-
+        totalSizeInPx = y;
     }
 
     public void liederStarten()
